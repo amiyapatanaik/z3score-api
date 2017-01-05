@@ -25,8 +25,8 @@
     status is 1 for success or 0 for failure.<br />
     Sleep stages are encoded as: Wake - 0, Stage1 - 1, Stage2 - 2, Stage3 - 3, REM - 5.<br />
     Confidence varies between 0 and 10. 0 very low confidence, 10 very high confidence.<br />
-    calls_left is the number of hourly API calls left, returned only if successfully.<br />
-    epochs_left is the number of daily epochs left, returned only if successfully.<br />
+    calls_left is the number of hourly API calls left, returned only if successful.<br />
+    epochs_left is the number of daily epochs left, returned only if successful.<br />
  
 
 * **Sample Call using CURL:**
@@ -68,8 +68,8 @@
   * **Code:** 200 <br />
     **Content:** `{ status : 1 or 0, message : validity of the license or error message, call_limit = C, epoch_limit = E}` <br />
     status is 1 for success or 0 for failure.<br />
-    call_limit is the allowed number of API calls in any given hour, returned only if successfully.<br />
-    epoch_limit is the allowed number of epochs that can be scored in any given 24 hour period, returned only if successfully.<br />
+    call_limit is the allowed number of API calls in any given hour, returned only if successful.<br />
+    epoch_limit is the allowed number of epochs that can be scored in any given 24 hour period, returned only if successful.<br />
     
 
 * **Sample Call using CURL:**
