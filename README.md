@@ -29,21 +29,24 @@
     epochs_left is the number of daily epochs left, returned only if successfully.<br />
  
 
-* **Sample Call:**
+* **Sample Call using CURL:**
 
-  ```matlab
-    try
-    response = loadjson(urlreadpost('http://z3score.com/api/v1/check', ... 
-        {'email',email,'key',key,'file',stream}));
-	catch
-    	disp('Server is unreachable');
-    	return
-	end
+  ```shell
+    curl  -F file=@cfsfile.cfs -F email=email@domain.com -F key=yourAPIkey https://z3score.com/api/v1/score
   ```
+  Response (sample cfs had 6 epochs):
+  ```shell
+  {
+  "calls_left": 18, 
+  "epochs_left": 57031, 
+  "message": [ [0.0,8.34], [0.0,10.0], [0.0,10.0], [1.0,10.0], [1.0,10.0], [2.0,10.0]  ],
+  "status": 1
+ }
+```
   
   **Check API key**
 ----
- Validate API key.
+ Validate API key and also check API call limits. 
 
 * **URL**
 
@@ -51,7 +54,7 @@
 
 * **Method:**
 
-  `POST`
+  `POST` or `GET`
   
 *  **URL Params**
 
@@ -63,18 +66,23 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ status : 1 or 0, message : validity of the license or error message}` <br />
+    **Content:** `{ status : 1 or 0, message : validity of the license or error message, call_limit = C, epoch_limit = E}` <br />
     status is 1 for success or 0 for failure.<br />
+    call_limit is the allowed number of API calls in any given hour, returned only if successfully.<br />
+    epoch_limit is the allowed number of epochs that can be scored in any given 24 hour period, returned only if successfully.<br />
     
 
-* **Sample Call:**
+* **Sample Call using CURL:**
 
-  ```matlab
-    try
-    response = loadjson(urlreadpost('http://z3score.com/api/v1/check',...
-                                        {'email',email,'key',key}));
-    catch
-      disp('Server is unreachable');
-      return
-    end
+   ```shell
+    curl -F email=email@domain.com -F key=yourAPIkey https://z3score.com/api/v1/check
   ```
+  Response:
+  ```shell
+  {
+  "call_limit": 20, 
+  "epoch_limit": 60000, 
+  "message": "License valid till: 28-February-2017 UTC.", 
+  "status": 1
+   }
+```
