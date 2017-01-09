@@ -1,5 +1,9 @@
 # Z3Score Sleep Scoring API
-Z3score provides an easy to use RESTful API to carry out sleep scoring. Associated paper will be made available soon. Sample code in MATLAB and Python are included. You will need an API key to be able to access the server. To request an API key, send in your requests to: contact@z3score.com  
+Z3score provides an easy to use RESTful API to carry out sleep scoring. Associated paper will be made available soon. Sample code in MATLAB and Python are included. You will need an API key to be able to access the server. To request an API key, send in your requests to: contact@z3score.com 
+
+The included sample code requires cfslib to be able to create and stream CFS files. Download cfslib from:
+- Python: https://github.com/amiyapatanaik/pycfslib or do pip install pycfslib
+- MATLAB: https://github.com/amiyapatanaik/cfslib-MATLAB 
 
 **Score CFS file/stream**
 ----
