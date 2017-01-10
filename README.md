@@ -2,8 +2,49 @@
 Z3score provides an easy to use RESTful API to carry out sleep scoring. Associated paper will be made available soon. Sample code in MATLAB and Python are included. You will need an API key to be able to access the server. To request an API key, send in your requests to: contact@z3score.com 
 
 The included sample code requires cfslib to be able to create and stream CFS files. Download cfslib from:
-- Python: https://github.com/amiyapatanaik/pycfslib or do pip install pycfslib
+- Python: https://github.com/amiyapatanaik/pycfslib or do pip install pycfslib. In addition the sample python code requires pyedflib to be able to read the sample EDF file included here. Get pyedflib at: https://github.com/holgern/pyedflib or do pip install pyedflib
 - MATLAB: https://github.com/amiyapatanaik/cfslib-MATLAB 
+
+### Sample Run
+Clone/Download this package. In sampleAPI.py enter your email address and API key in the appropriate location.
+``` python
+serverURL = 'https://z3score.com/api/v1'
+email = 'email@domain.com'
+key = 'yourAPIKey'
+```
+Now run:
+``` shell
+python sampleAPI.py
+```
+Sample Output:
+``` shell
+License valid till: 28-February-2017 UTC.
+API Call limit (hourly): 300, Epoch limit (daily): 100000
+Here are the channel labels:
+1. C3-M2
+2. C4-M1
+3. O1-M2
+4. O2-M1
+5. F3-M2
+6. F4-M1
+7. Chin1-Chin2
+8. EKG
+9. PG1-M2
+10. PG2-M1
+Enter channel C3-A1 number: 1
+Enter channel C4-A2 number: 2
+Enter channel EoGleft-A1 number: 9
+Enter channel EoGright-A2 number: 10
+Reading EDF file...
+Time taken: 2.964
+Converting to CFS and saving in test.cfs...
+Time taken: 4.365
+Now scoring
+Time taken: 12.950
+Auto scoring agreement with expert scorer: 85.14%, Kappa: 0.809
+Done.
+```
+You can try the MATLAB sample similarly. 
 
 **Score CFS file/stream**
 ----
