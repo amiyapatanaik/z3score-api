@@ -22,10 +22,11 @@ serverURL = 'http://z3score.com/api/v1';
 email = 'email@domain.com';
 key = 'yourKey';
 
-addpath('cfslib_Matlab');
-addpath('cfslib_Matlab/utilities');
-addpath('cfslib_Matlab/utilities/jsonlab');
-addpath('cfslib_Matlab/utilities/encoder');
+%Download cfslib-MATLAB from https://github.com/amiyapatanaik/cfslib-MATLAB 
+addpath('cfslib-MATLAB');
+addpath('cfslib-MATLAB/utilities');
+addpath('cfslib-MATLAB/utilities/jsonlab');
+addpath('cfslib-MATLAB/utilities/encoder');
 clc
 
 %check license
@@ -87,7 +88,7 @@ fprintf('Time taken %.3f seconds\n',t);
 %Now ask server to score the cfs file generated earlier 
 disp('Scoring CFS stream');
 %You can also read the CFS stream from file like this:
-f = fopen('testpy.cfs'); stream = fread(f,Inf,'*uint8'); fclose(f);
+%f = fopen('test.cfs'); stream = fread(f,Inf,'*uint8'); fclose(f);
 %as we already have the stream we won't read the CFS file again
 tic;
 try
