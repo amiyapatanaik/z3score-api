@@ -15,9 +15,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-# requires pycfslib, install using pip: 
+# requires pycfslib and pyedflib, install using pip: 
 # pip install pycfslib 
-#
+# pip install pyedflib
 
 from pycfslib import save_stream
 import pyedflib
