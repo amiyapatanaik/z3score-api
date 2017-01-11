@@ -18,6 +18,7 @@
 %
 
 % Main settings
+% https is NOT supported, use http
 serverURL = 'http://z3score.com/api/v1';
 email = 'email@domain.com';
 key = 'yourKey';
