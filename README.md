@@ -5,6 +5,9 @@ The included sample code requires cfslib to be able to create and stream CFS fil
 - Python: https://github.com/amiyapatanaik/pycfslib or do pip install pycfslib. In addition the sample python code requires pyedflib to be able to read the sample EDF file included here. Get pyedflib at: https://github.com/holgern/pyedflib or do pip install pyedflib
 - MATLAB: https://github.com/amiyapatanaik/cfslib-MATLAB 
 
+### GUI for the API
+You can use GUI based on FASST to quickly do scoring via an user interface. The GUI is Matlab based and can be downloaded from here: https://github.com/amiyapatanaik/FASST-Z3Score  
+
 ### Sample Run
 Clone/Download this package. In sampleAPI.py enter your email address and API key in the appropriate location.
 ``` python
