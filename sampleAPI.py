@@ -100,7 +100,7 @@ if data['status'] == 0:
 scores = np.array(data['message'])
 num_epochs = len(scores)
 
-with open('test_expert.csv', 'rb') as f:
+with open('test_expert.csv', 'rt') as f:
     Yb = sum([[int(x) for x in rec] for rec in csv.reader(f, delimiter=',')], [])
 
 accuracy = sum(scores[:,0]==Yb[0:num_epochs])*100.0/num_epochs
