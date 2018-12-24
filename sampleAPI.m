@@ -14,16 +14,16 @@
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 % THE SOFTWARE.
 %
-% Requires cfslib MATLAB library: https://github.com/amiyapatanaik/cfslib-MATLAB 
+% Requires cfslib MATLAB library: https://github.com/neurobittechnologies/cfslib-MATLAB
 %
 
 % Main settings
 % https is NOT supported, use http
 serverURL = 'http://z3score.com/api/v1';
 email = 'email@domain.com';
-key = 'yourKey';
+key = 'API_KEY';
 
-%Download cfslib-MATLAB from https://github.com/amiyapatanaik/cfslib-MATLAB 
+%Download cfslib-MATLAB from https://github.com/neurobittechnologies/cfslib-MATLAB
 addpath('cfslib-MATLAB');
 addpath('cfslib-MATLAB/utilities');
 addpath('cfslib-MATLAB/utilities/jsonlab');
@@ -68,18 +68,19 @@ C3N = input('Please select the C3:A2 channel number: ');
 C4N = input('Please select the C4:A1 channel number: ');
 ELN = input('Please select the EOGl:A2 channel number: ');
 ERN = input('Please select the EOGr:A1 channel number: ');
+EM = input('Please select the bipolar EMG channel number: ');
 
 %Find out sampling rate
-samplingRate = signalHeader(C3N).samples_in_record/header.data_record_duration;
-%Construct raw data from selected channels
-EEGData = [signalCell{C3N}'; signalCell{C4N}'; signalCell{ELN}'; signalCell{ERN}'];
-num_epochs = floor(size(EEGData,2)/samplingRate/30);
+samplingRateEEG = signalHeader(C3N).samples_in_record/header.data_record_duration;
+samplingRateEOG = signalHeader(ELN).samples_in_record/header.data_record_duration;
+samplingRateEMG = signalHeader(EM).samples_in_record/header.data_record_duration;
+num_epochs = floor(size(signalCell{C3N},1)/samplingRateEEG/30);
 
 %Convert raw stream to a CFS and write to a file
 disp('Converting EDF data to CFS and saving in test.cfs');
 tic;
 %Convert raw PSG stream to CFS stream
-stream = streamCFS(EEGData, samplingRate);
+stream = streamCFS_V2(signalCell{C3N}, signalCell{C4N}, signalCell{ELN}, signalCell{ERN}, signalCell{EM}, samplingRateEEG, samplingRateEOG, samplingRateEMG);
 fileID = fopen('test.cfs','w');
 fwrite(fileID,stream,'*uint8','ieee-le');
 fclose(fileID);

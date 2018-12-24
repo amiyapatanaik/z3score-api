@@ -19,7 +19,7 @@
 # pip install pycfslib 
 # pip install pyedflib
 
-from pycfslib import save_stream
+from pycfslib import save_stream_v2
 import pyedflib
 import numpy as np
 import csv
@@ -58,25 +58,26 @@ C3 = int(input("Enter channel C3-A1 number: ")) - 1
 C4 = int(input("Enter channel C4-A2 number: ")) - 1
 EL = int(input("Enter channel EoGleft-A1 number: ")) - 1
 ER = int(input("Enter channel EoGright-A2 number: ")) - 1
+EM = int(input("Enter channel bipolar EMG number: ")) - 1
 
-sampling_frequency = edf_file.getSampleFrequency(C3)
-total_samples = samples[C3]
+fsampling = [edf_file.getSampleFrequency(C3), edf_file.getSampleFrequency(EL),
+                     edf_file.getSampleFrequency(EM)]
 
 
 print("Reading EDF file...")
 start_time = time()
-PSG_data = np.empty([4,total_samples])
-PSG_data[0,:] = np.asarray(edf_file.readSignal(C3))
-PSG_data[1,:] = np.asarray(edf_file.readSignal(C4))
-PSG_data[2,:] = np.asarray(edf_file.readSignal(EL))
-PSG_data[3,:] = np.asarray(edf_file.readSignal(ER))
+EEG_C3 = np.asarray(edf_file.readSignal(C3))
+EEG_C4 = np.asarray(edf_file.readSignal(C4))
+EOGL = np.asarray(edf_file.readSignal(EL))
+EOGR = np.asarray(edf_file.readSignal(ER))
+EMG = np.asarray(edf_file.readSignal(EM))
 elapsed_time = time() - start_time
 print("Time taken: %.3f" % elapsed_time)
 
 
 print("Converting to CFS and saving in test.cfs...")
 start_time = time()
-stream = save_stream('test.cfs', PSG_data, sampling_frequency)
+stream = save_stream_v2('test.cfs', EEG_C3, EEG_C4, EOGL, EOGR, EMG, fsampling)
 elapsed_time = time() - start_time
 print("Time taken: %.3f" % elapsed_time)
 

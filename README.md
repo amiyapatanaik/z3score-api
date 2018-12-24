@@ -1,12 +1,18 @@
+## Major Update: API now supports Z3Score V2 (NEO)
+Z3Score version 2 is built from the ground up and is trained and tested on massive datasets (over 30,000 hours of data). It shows a 35 to 40% reduction in error rate in some datasets. The Z3Score API remains the same, but to utilize this new scorer simply use the new CFS V2 format to convert your raw PSG data. 
+
+CFS V1 will automatically use the Z3Score V1 sleep scorer
+CFS V2 will automatically use the Z3Score V2 (NEO) sleep scorer
+
 # Z3Score Sleep Scoring API
 Z3score provides an easy to use RESTful API to carry out sleep scoring. Associated paper will be made available soon. Sample code in MATLAB and Python are included. You will need an API key to be able to access the server. To request an API key, send in your requests to: contact@z3score.com 
 
 The included sample code requires cfslib to be able to create and stream CFS files. Download cfslib from:
-- Python: https://github.com/amiyapatanaik/pycfslib or do pip install pycfslib. In addition the sample python code requires pyedflib to be able to read the sample EDF file included here. Get pyedflib at: https://github.com/holgern/pyedflib or do pip install pyedflib
-- MATLAB: https://github.com/amiyapatanaik/cfslib-MATLAB 
+- Python: https://github.com/neurobittechnologies/pycfslib or do pip install pycfslib. In addition the sample python code requires pyedflib to be able to read the sample EDF file included here. Get pyedflib at: https://github.com/holgern/pyedflib or do pip install pyedflib
+- MATLAB: https://github.com/neurobittechnologies/cfslib-MATLAB 
 
 ### GUI for the API
-You can use GUI based on FASST to quickly do scoring via an user interface. The GUI is Matlab based and can be downloaded from here: https://github.com/amiyapatanaik/FASST-Z3Score  
+You can use GUI based on FASST to quickly do scoring via an user interface. The GUI is Matlab based and can be downloaded from here: https://github.com/neurobittechnologies/FASST-Z3Score  
 
 ### Sample Run
 Clone/Download this package. In sampleAPI.py enter your email address and API key in the appropriate location.
@@ -38,13 +44,14 @@ Enter channel C3-A1 number: 1
 Enter channel C4-A2 number: 2
 Enter channel EoGleft-A1 number: 9
 Enter channel EoGright-A2 number: 10
+Enter channel bipolar EMG number: 7
 Reading EDF file...
-Time taken: 2.964
+Time taken: 2.432
 Converting to CFS and saving in test.cfs...
 Time taken: 4.365
 Now scoring
 Time taken: 12.950
-Auto scoring agreement with expert scorer: 85.14%, Kappa: 0.809
+Auto scoring agreement with expert scorer: 86.86%, Kappa: 0.831
 Done.
 ```
 You can try the MATLAB sample similarly. 
